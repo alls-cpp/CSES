@@ -61,20 +61,26 @@ const char nl = '\n';
 //////////////////// DO NOT TOUCH BEFORE THIS LINE ////////////////////////
 ///////////////////////////////////////////////////////////////////////////
  
-void hanoi(int n, int start, int tmp, int end) {
-	if(n == 1)
-		cout << start << " " << end << nl;
-	else {
-		hanoi(n-1, start, end, tmp);
-		cout << start << " " << end << nl;
-		hanoi(n-1, tmp, start, end);
-	}
-}
-
 void solve() {
-	ll n; cin >> n;
-	cout << pow(2, n)-1 << nl; 
-	hanoi(n, 1, 2, 3);
+	vi a(26);
+	string s; cin >> s;
+	feach(c, s) {
+		++a[c-'a'];
+	}
+	vi v(SZ(s));
+	v[0] = 1;
+	FOR(i, 2, SZ(s)+1) {
+		v[i-1] = v[i-2]*i;
+	}
+	int res = v.back();
+	feach(i, a)
+		if(i > 1)
+			res /= v[i-1];
+	cout << res << nl;
+	sort(ALL(s));
+	do {
+		cout << s << nl;
+	} while(next_permutation(ALL(s)));
 }
  
 int32_t main() {
