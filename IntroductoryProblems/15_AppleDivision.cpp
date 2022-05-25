@@ -3,9 +3,9 @@
 #include <ext/pb_ds/tree_policy.hpp>
 
 #ifdef ALE
-#define db(x) cout << #x << " = ", _print(x), cout << nl
+#define DB(x) cout << #x << " = ", _print(x), cout << nl
 #else
-#define db(x)
+#define DB(x)
 #endif
  
 using namespace std;
@@ -27,10 +27,11 @@ using vpll = vector<pll>;
 #define rFOR(i, a, b) for (int i = (a); i >= (b); --i)
 #define feach(i, x) for (auto& i : x)
  
-#define sz(x) (int)(x).size()
-#define all(x) x.begin(), x.end()
-#define pb push_back
-#define make_unique(x) {sort(all(x)); x.erase(unique(all(x)), x.end());}
+#define SZ(x) (int)(x).size()
+#define ALL(x) x.begin(), x.end()
+#define PB push_back
+#define MP make_pair
+#define make_unique(x) {sort(ALL(x)); x.erase(unique(ALL(x)), x.end());}
 #define uid(a, b) uniform_int_distribution<int>(a, b)(rng) 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -59,35 +60,23 @@ const char nl = '\n';
 ///////////////////////////////////////////////////////////////////////////
 //////////////////// DO NOT TOUCH BEFORE THIS LINE ////////////////////////
 ///////////////////////////////////////////////////////////////////////////
- 
-void solve() {
-	int n; cin >> n;
-	vvi v(n+1);
-	FOR(i, 0, pow(2, n)) {
-		v[__builtin_popcount(i)].pb(i);
-	}
-	feach(j, v)
-	db(sz(j));
-
-	int start, end;
-	start = end = n/2;
-	end += n%2;
-	do {
-		if(sz(v[start-1]) == sz(v[start])) {
-			--start;
-			++end;
-		}
-		FOR(i, start, end+1) {
-			cout << v[i][0];
-			v[i].pop_front();
-		}
-	} while(start);
+vi v; 
+ll boh(int index, int n) {
+	if(index == n)
+		return 0;
+	return min( abs(boh(index+1, n)-v[index]), abs(boh(index+1, n)+v[index]) ); 
 }
 
+void solve() {
+	int n; cin >> n;
+	v.resize(n); feach(i, v) cin >> i;
+	cout << boh(0, n);
+}
+ 
 int32_t main() {
     cin.tie(0)->sync_with_stdio(0);
 
-    int t = 2;
+    int t = 1;
     while (t--) {
         #ifdef ALE
             cout << "------------------------------\n";
