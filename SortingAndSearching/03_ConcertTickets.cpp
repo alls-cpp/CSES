@@ -41,36 +41,33 @@ const char nl = '\n';
 //////////////////// DO NOT TOUCH BEFORE THIS LINE ////////////////////////
 ///////////////////////////////////////////////////////////////////////////
  
-void asolve() {
-	int n; cin >> n;
-	vi v(n); feach(i, v) cin >> i;
-	int i = 0;
-	ll best = MOD;
-	while(i < pow(2, n)) {
-		bitset<20> choice(i);
-		string s = choice.to_string();
-		ll tmp = 0;
-		FOR(i, 0, n)
-			if(s[19-i] == '1')
-				tmp -= v[i];
-			
-			else
-				tmp += v[i];
-		best = min(best, abs(tmp));
-		i++;
+void solve() {
+	int n, m; cin >> n >> m;
+	multiset<int> sett;
+	FOR(i, 0, n) {
+		int tmp; cin >> tmp; sett.insert(tmp);
 	}
-	cout << best;
+	FOR(i, 0, m) {
+		int tmp; cin >> tmp;
+		auto it = sett.upper_bound(tmp);
+		if(it == sett.begin())
+			cout << -1 << nl;
+		else {
+			cout << *(--it) << nl;
+			sett.erase(it);
+		}
+	}
 }
-
+ 
 int32_t main() {
     cin.tie(0)->sync_with_stdio(0);
 
     int t = 1;
     while (t--) {
         #ifdef ALE
-            cout << "\e[36m" << "------------------------------\n" << "\e[39m";
+		 cout << "\033[1;31m" << "------------------------------\n" << "\033[0m";
         #endif
-        asolve();
+        solve();
     }
 }
 

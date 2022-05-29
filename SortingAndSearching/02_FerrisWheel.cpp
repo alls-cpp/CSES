@@ -41,27 +41,21 @@ const char nl = '\n';
 //////////////////// DO NOT TOUCH BEFORE THIS LINE ////////////////////////
 ///////////////////////////////////////////////////////////////////////////
  
-void asolve() {
-	int n; cin >> n;
+void solve() {
+	int n, x; cin >> n >> x;
 	vi v(n); feach(i, v) cin >> i;
-	int i = 0;
-	ll best = MOD;
-	while(i < pow(2, n)) {
-		bitset<20> choice(i);
-		string s = choice.to_string();
-		ll tmp = 0;
-		FOR(i, 0, n)
-			if(s[19-i] == '1')
-				tmp -= v[i];
-			
-			else
-				tmp += v[i];
-		best = min(best, abs(tmp));
-		i++;
+	sort(ALL(v));
+	int res, i, j;
+	res = 0, i = 0, j = n-1;
+	while(i <= j) {
+		if(v[i]+v[j] <= x)
+			++i;
+		++res;
+		--j;
 	}
-	cout << best;
+	cout << res;
 }
-
+ 
 int32_t main() {
     cin.tie(0)->sync_with_stdio(0);
 
@@ -70,7 +64,7 @@ int32_t main() {
         #ifdef ALE
             cout << "\e[36m" << "------------------------------\n" << "\e[39m";
         #endif
-        asolve();
+        solve();
     }
 }
 
