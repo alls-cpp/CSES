@@ -34,6 +34,8 @@ problems_list = soup.find_all("ul", class_="task-list")[1:]
 for idx, problem_list in enumerate(problems_list):
     txt = problem_list.prettify()
     txt = txt.split('<li class="task">')[1:]
+    count = 0
+    print(f"Checking {folders[idx]}")
     for problem in txt:
         if not "icon full" in problem:
             continue
@@ -64,12 +66,17 @@ for idx, problem_list in enumerate(problems_list):
                 if "Share" in a.text:
                     sharable_link = a["href"]
                     break
-            code_tag = soup.find("pre", class_="prettyprint linenums resize-horizontal")
-            # Extract the code content
+
+            code_tag = soup.find("pre")
             code = code_tag.get_text()
             if sharable_link:
                 code = "// https://cses.fi" + sharable_link + "\n" + code
             # Save the code to a file
             with open(f"{folders[idx]}/{problem_name}", "w") as file:
                 file.write(code)
+            print(f"{problem_name} saved")
+            count += 1
             break
+    if count == 0:
+        print(f"No new problems in {folders[idx]}")
+    print()
