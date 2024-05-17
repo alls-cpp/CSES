@@ -3,7 +3,7 @@
 C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset/).
 
 ## Current Status
-<details><summary>IntroductoryProblems</summary>
+<details><summary>Introductory Problems</summary>
 <p>
 
 - [X] - Weird Algorithm
@@ -27,7 +27,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [X] - Grid Paths
 </p>
 </details>
-<details><summary>SortingandSearching</summary>
+<details><summary>Sorting and Searching</summary>
 <p>
 
 - [X] - Distinct Numbers
@@ -67,7 +67,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Maximum Subarray Sum II
 </p>
 </details>
-<details><summary>DynamicProgramming</summary>
+<details><summary>Dynamic Programming</summary>
 <p>
 
 - [X] - Dice Combinations
@@ -91,7 +91,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Counting Numbers
 </p>
 </details>
-<details><summary>GraphAlgorithms</summary>
+<details><summary>Graph Algorithms</summary>
 <p>
 
 - [ ] - Counting Rooms
@@ -132,7 +132,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Distinct Routes
 </p>
 </details>
-<details><summary>RangeQueries</summary>
+<details><summary>Range Queries</summary>
 <p>
 
 - [ ] - Static Range Sum Queries
@@ -156,7 +156,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Range Queries and Copies
 </p>
 </details>
-<details><summary>TreeAlgorithms</summary>
+<details><summary>Tree Algorithms</summary>
 <p>
 
 - [ ] - Subordinates
@@ -213,7 +213,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Another Game
 </p>
 </details>
-<details><summary>StringAlgorithms</summary>
+<details><summary>String Algorithms</summary>
 <p>
 
 - [ ] - Word Combinations
@@ -247,7 +247,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Convex Hull
 </p>
 </details>
-<details><summary>AdvancedTechniques</summary>
+<details><summary>Advanced Techniques</summary>
 <p>
 
 - [ ] - Meet in the Middle
@@ -276,7 +276,7 @@ C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset
 - [ ] - Distinct Routes II
 </p>
 </details>
-<details><summary>AdditionalProblems</summary>
+<details><summary>Additional Problems</summary>
 <p>
 
 - [ ] - Shortest Subsequence

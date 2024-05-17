@@ -24,6 +24,7 @@ next_link = "https://cses.fi/problemset/"
 problems_list = session.get(next_link)
 soup = bs4.BeautifulSoup(problems_list.text, "html.parser")
 folders = [tag.text.replace(" ", "") for tag in soup.find_all("h2")][1:]
+folders_name = [tag.text for tag in soup.find_all("h2")][1:]
 readme_text = """# CSES
 
 C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset/).
@@ -43,7 +44,7 @@ for idx, problem_list in enumerate(problems_list):
     txt = txt.split('<li class="task">')[1:]
     count = 0
     print(f"Checking {folders[idx]}")
-    readme_text += f"<details><summary>{folders[idx]}</summary>\n<p>\n\n"
+    readme_text += f"<details><summary>{folders_name[idx]}</summary>\n<p>\n\n"
     for prob in txt:
         problem = prob.split('<a href="')[1].split('">')[0]
         problem_link = "https://cses.fi" + problem
