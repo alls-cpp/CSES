@@ -24,6 +24,13 @@ next_link = "https://cses.fi/problemset/"
 problems_list = session.get(next_link)
 soup = bs4.BeautifulSoup(problems_list.text, "html.parser")
 folders = [tag.text.replace(" ", "") for tag in soup.find_all("h2")][1:]
+readme_text = """# CSES
+
+C++ solutions to problems from the [CSES Problem Set](https://cses.fi/problemset/).
+
+## Current Status
+"""
+
 for folder in folders:
     # if there isn't folder create it
     try:
@@ -36,17 +43,22 @@ for idx, problem_list in enumerate(problems_list):
     txt = txt.split('<li class="task">')[1:]
     count = 0
     print(f"Checking {folders[idx]}")
-    for problem in txt:
-        if not "icon full" in problem:
-            continue
-        problem = problem.split('<a href="')[1].split('">')[0]
+    readme_text += f"<details><summary>{folders[idx]}</summary>\n<p>\n"
+    for prob in txt:
+        problem = prob.split('<a href="')[1].split('">')[0]
         problem_link = "https://cses.fi" + problem
         problem_page = session.get(problem_link)
         soup = bs4.BeautifulSoup(problem_page.text, "html.parser")
+        name_da_readme = soup.find("h1").get_text()
+        if not "icon full" in prob:
+            readme_text += f"- [ ]n - {name_da_readme}\n"
+            continue
+        readme_text += f"- [X] - {name_da_readme}\n"
         problem_name = soup.find("h1").get_text().replace(" ", "") + ".cpp"
         if os.path.exists(f"{folders[idx]}/{problem_name}"):
             # print(f"{problem_name} already exists")
             continue
+    
         problem_page = soup.find("div", class_="nav sidebar")
         submissions = problem_page.find_all("a")
         for submission in submissions:
@@ -77,6 +89,11 @@ for idx, problem_list in enumerate(problems_list):
             print(f"{problem_name} saved")
             count += 1
             break
+    readme_text += "</p>\n</details>\n"
     if count == 0:
         print(f"No new problems in {folders[idx]}")
     print()
+
+with open("README.md", "w") as file:
+    file.write(readme_text)
+print("README.md updated")
