@@ -43,7 +43,7 @@ for idx, problem_list in enumerate(problems_list):
     txt = txt.split('<li class="task">')[1:]
     count = 0
     print(f"Checking {folders[idx]}")
-    readme_text += f"<details><summary>{folders[idx]}</summary>\n<p>\n"
+    readme_text += f"<details><summary>{folders[idx]}</summary>\n<p>\n\n"
     for prob in txt:
         problem = prob.split('<a href="')[1].split('">')[0]
         problem_link = "https://cses.fi" + problem
@@ -51,7 +51,7 @@ for idx, problem_list in enumerate(problems_list):
         soup = bs4.BeautifulSoup(problem_page.text, "html.parser")
         name_da_readme = soup.find("h1").get_text()
         if not "icon full" in prob:
-            readme_text += f"- [ ]n - {name_da_readme}\n"
+            readme_text += f"- [ ] - {name_da_readme}\n"
             continue
         readme_text += f"- [X] - {name_da_readme}\n"
         problem_name = soup.find("h1").get_text().replace(" ", "") + ".cpp"
